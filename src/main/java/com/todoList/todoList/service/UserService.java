@@ -25,6 +25,6 @@ public class UserService {
                 .email(userDto.getEmail())
                 .build();
 
-        return UserDto.from(userRepository.save(user));
+        return UserDto.toEntity(userRepository.save(user));
     }
 }
