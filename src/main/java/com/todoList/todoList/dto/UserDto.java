@@ -15,13 +15,14 @@ public class UserDto {
     private String password;
     private String email;
 
-    public static UserDto from(User user) {
+    public static UserDto toEntity(User user) {
         if(user == null)
             return null;
 
         return UserDto.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
+                .email(user.getEmail())
                 .build();
     }
 }
