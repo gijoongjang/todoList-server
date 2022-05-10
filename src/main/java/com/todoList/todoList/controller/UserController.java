@@ -39,7 +39,7 @@ public class UserController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
 
         if(userDetails == null) {
-            return ResponseEntity.ok(ResponseDto.builder().error(true).message("Login fail").build());
+            return ResponseEntity.ok(ResponseDto.builder().error(true).message("Loginfail").build());
         }
 
         String token = tokenProvider.createToken(userDetails);
