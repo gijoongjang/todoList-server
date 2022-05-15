@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TodoService {
 
@@ -17,5 +19,15 @@ public class TodoService {
     public Todo addTodo(TodoDto todoDto, String userName) {
         Todo todo = TodoDto.toEntity(todoDto, userName);
         return todoRepository.save(todo);
+    }
+
+    public List<Todo> readAll(String username) {
+        return todoRepository.findAllByUsername(username);
+    }
+
+    public List<Todo> readAllByIsCompleted(String username, String isCompleted) {
+        boolean _isCompleted = isCompleted.equals("true") ? true : false;
+
+        return todoRepository.findAllByUsernameAndIsCompleted(username, _isCompleted);
     }
 }
