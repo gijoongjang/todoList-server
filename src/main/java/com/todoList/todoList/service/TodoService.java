@@ -25,9 +25,17 @@ public class TodoService {
         return todoRepository.findAllByUsername(username);
     }
 
-    public List<Todo> readAllByIsCompleted(String username, String isCompleted) {
+    public List<Todo> readAllByIsCompleted(String userName, String isCompleted) {
         boolean _isCompleted = isCompleted.equals("true") ? true : false;
 
-        return todoRepository.findAllByUsernameAndIsCompleted(username, _isCompleted);
+        return todoRepository.findAllByUsernameAndIsCompleted(userName, _isCompleted);
+    }
+
+    @Transactional
+    public Todo changeIsCompletedById(long id, String userName) {
+        Todo todo = todoRepository.findByUsernameAndId(userName, id);
+        todo.setCompleted(!todo.isCompleted());
+
+        return todoRepository.save(todo);
     }
 }
