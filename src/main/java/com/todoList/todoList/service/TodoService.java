@@ -32,8 +32,14 @@ public class TodoService {
     }
 
     @Transactional
-    public Todo changeIsCompletedById(long id, String userName) {
+    public Todo changeIsCompletedById(long id, String userName)
+    {
         Todo todo = todoRepository.findByUsernameAndId(userName, id);
+
+        if(todo == null) {
+            throw new RuntimeException("todo is not exist");
+        }
+
         todo.setCompleted(!todo.isCompleted());
 
         return todoRepository.save(todo);
