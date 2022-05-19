@@ -34,8 +34,7 @@ public class TodoService {
     }
 
     @Transactional
-    public Todo changeIsCompletedById(long id, String userName)
-    {
+    public Todo changeIsCompletedById(long id, String userName) {
         Todo todo = todoRepository.findByUsernameAndId(userName, id);
 
         if(todo == null) {
@@ -47,6 +46,7 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
+    @Transactional
     public Todo updateTodoById(long id, TodoDto todoDto, String userName) {
         Todo todo = todoRepository.findByUsernameAndId(userName, id);
 
