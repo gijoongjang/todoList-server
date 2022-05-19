@@ -37,4 +37,9 @@ public class TodoController {
     public ResponseEntity<Todo> changeIsCompleted(@PathVariable long id, @AuthenticationPrincipal User user) {
         return new ResponseEntity<>(todoService.changeIsCompletedById(id, user.getUsername()), HttpStatus.OK);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable long id, @RequestBody TodoDto todoDto, @AuthenticationPrincipal User user) {
+        return new ResponseEntity<>(todoService.updateTodoById(id, todoDto, user.getUsername()), HttpStatus.OK);
+    }
 }

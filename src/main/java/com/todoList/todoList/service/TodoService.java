@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,6 +43,19 @@ public class TodoService {
         }
 
         todo.setCompleted(!todo.isCompleted());
+
+        return todoRepository.save(todo);
+    }
+
+    public Todo updateTodoById(long id, TodoDto todoDto, String userName) {
+        Todo todo = todoRepository.findByUsernameAndId(userName, id);
+
+        if(todo == null) {
+            throw new RuntimeException("todo is not exist");
+        }
+
+        todo.setTitle(todoDto.getTitle());
+        todo.setCreatedDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
         return todoRepository.save(todo);
     }
