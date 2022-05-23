@@ -59,4 +59,15 @@ public class TodoService {
 
         return todoRepository.save(todo);
     }
+
+    @Transactional
+    public void deleteTodoById(long id, String userName) {
+        Todo todo = todoRepository.findByUsernameAndId(userName, id);
+
+        if(todo == null) {
+            throw new RuntimeException("Todo not found");
+        }
+
+        todoRepository.deleteById(id);
+    }
 }
