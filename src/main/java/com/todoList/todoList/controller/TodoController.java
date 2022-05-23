@@ -20,8 +20,15 @@ public class TodoController {
     TodoService todoService;
 
     @PostMapping("/addTodo")
-    public ResponseEntity<Todo> createTodo(@RequestBody TodoDto todoDto, @AuthenticationPrincipal User user) throws Exception {
-        return new ResponseEntity<>(todoService.addTodo(todoDto, user.getUsername()), HttpStatus.CREATED);
+    public ResponseEntity<?> createTodo(@RequestBody TodoDto todoDto, @AuthenticationPrincipal User user) throws Exception {
+        try{
+            todoService.addTodo(todoDto, user.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(todoService.readAll(user.getUsername()), HttpStatus.OK);
     }
 
     @GetMapping("/todoList")

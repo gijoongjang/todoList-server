@@ -18,9 +18,10 @@ public class TodoService {
     TodoRepository todoRepository;
 
     @Transactional
-    public Todo addTodo(TodoDto todoDto, String userName) {
+    public void addTodo(TodoDto todoDto, String userName) {
         Todo todo = TodoDto.toEntity(todoDto, userName);
-        return todoRepository.save(todo);
+
+        todoRepository.save(todo);
     }
 
     public List<Todo> readAll(String username) {
