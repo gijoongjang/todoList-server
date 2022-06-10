@@ -56,7 +56,7 @@ public class TodoService {
         }
 
         todo.setTitle(todoDto.getTitle());
-        todo.setCreatedDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        todo.setUpdatedDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
         return todoRepository.save(todo);
     }

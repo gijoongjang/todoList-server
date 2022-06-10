@@ -20,6 +20,8 @@ public class Todo {
 
     private String createdDate;
 
+    private String updatedDate;
+
     private String username;
 
     private boolean isCompleted;
