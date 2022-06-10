@@ -1,2 +1,2 @@
 # todoList-server
-springboot based
+springboot base
