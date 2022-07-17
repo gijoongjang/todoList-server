@@ -1,5 +1,5 @@
 # todoList-server
-RestAPI와 JWT 이용한 TodoList 프로젝트
+RestAPI와 JWT 이용한 TodoList 프로젝트(Back-End)
 
 <br>
 
